@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">PR2</a>
+        <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/users">Пользователи</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/roles">Роли</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/suppliers">Поставщики</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/products">Товары</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/orders">Заказы</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/OrderProducts">Товары в заказе</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/Warehouses">Склад</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/profile">Профиль</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container mt-3">
+    <form action="/logout" method="post">
+        <button type="submit">Выйти</button>
+    </form>
+    <h2>Профиль</h2>
+    <div th:if="${profile != null}">
+        <p><strong>Роль:</strong> <span th:text="${profile.user.getRole.getRoleName}"></span></p>
+        <p><strong>Имя:</strong> <span th:text="${profile.user.login}"></span></p>
+        <p><strong>Адрес:</strong> <span th:text="${profile.address}"></span></p>
+        <p><strong>Телефон:</strong> <span th:text="${profile.phone}"></span></p>
+    </div>
+
+    <h3>Редактировать профиль</h3>
+    <form th:action="@{/profile/{userId}/edit(userId=${profile.user.id})}" method="post">
+        <label for="address">Адрес</label>
+        <input type="text" id="address" name="address" th:value="${profile.address}" required>
+
+        <label for="phone">Телефон</label>
+        <input type="text" id="phone" name="phone" th:value="${profile.phone}" required>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+</body>
+</html>

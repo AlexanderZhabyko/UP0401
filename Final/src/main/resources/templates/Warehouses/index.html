@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Склад</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-3">
+    <h2>Склад</h2>
+    <a href="/Warehouses/new" class="btn btn-primary mb-3">Добавить склад</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Продукт</th>
+            <th>Линия</th>
+            <th>Ячейка</th>
+            <th>Количество</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="warehouse : ${warehouses}">
+            <td th:text="${warehouse.id}"></td>
+            <td th:text="${warehouse.product.name}"></td>
+            <td th:text="${warehouse.line}"></td>
+            <td th:text="${warehouse.cell}"></td>
+            <td th:text="${warehouse.quantity}"></td>
+            <td>
+                <a th:href="@{/Warehouses/{id}(id=${warehouse.id})}" class="btn btn-info">Подробно</a>
+                <a th:href="@{/Warehouses/{id}/edit(id=${warehouse.id})}" class="btn btn-warning">Редактировать</a>
+                <a th:href="@{/Warehouses/{id}/delete(id=${warehouse.id})}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

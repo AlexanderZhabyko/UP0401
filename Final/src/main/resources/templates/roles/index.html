@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Роли</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">PR2</a>
+    <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" href="/users">Пользователи</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/roles">Роли</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/suppliers">Поставщики</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/products">Товары</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/orders">Заказы</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/OrderProducts">Товары в заказе</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/Warehouses">Склад</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/profile">Профиль</a></li>
+        </ul>
+    </div>
+</nav>
+</header>
+<div class="container">
+    <h1>Роли</h1>
+    <form action="/orders/search" method="get" class="mb-3">
+        <input type="text" name="product" class="form-label" placeholder="Введите название роли">
+        <button class="btn btn-primary" type="submit">Найти</button>
+    </form>
+    <a href="/roles/new" class="btn btn-primary mb-3">Добавить роль</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Роль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="role : ${roles}">
+            <td th:text="${role.id}"></td>
+            <td th:text="${role.roleName}"></td>
+            <td>
+                <a th:href="@{/roles/{id}(id=${role.id})}" class="btn btn-info">Подробно</a>
+                <a th:href="@{/roles/{id}/edit(id=${role.id})}" class="btn btn-info">Редактировать</a>
+                <form th:action="@{/roles/{id}(id=${role.id})}" method="post" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

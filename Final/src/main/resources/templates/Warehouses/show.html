@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о складе</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Информация о складе</h1>
+    <p><strong>ID:</strong> <span th:text="${warehouse.id}"></span></p>
+    <p><strong>Продукт:</strong> <span th:text="${warehouse.product.name}"></span></p>
+    <p><strong>Линия:</strong> <span th:text="${warehouse.line}"></span></p>
+    <p><strong>Ячейка:</strong> <span th:text="${warehouse.cell}"></span></p>
+    <p><strong>Количество:</strong> <span th:text="${warehouse.quantity}"></span></p>
+    <a href="/Warehouses" class="btn btn-primary mt-3">Назад</a>
+</div>
+</body>
+</html>

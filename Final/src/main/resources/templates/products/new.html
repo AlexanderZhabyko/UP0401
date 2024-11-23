@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить продукт</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Добавить продукт</h1>
+    <form th:action="@{/products}" th:object="${product}" method="post">
+        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Товар</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">цена</label>
+            <input type="text" id="price" th:field="*{price}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        <a href="/roles" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+</body>
+</html>
